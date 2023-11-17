@@ -1,0 +1,21 @@
+{
+  "name": "green-oil",
+  "version": "1.0.0",
+  "description": "green oil api",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon --watch index.js 8000",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "bumi.ai",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "pg": "^8.11.3",
+    "sequelize": "^6.35.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

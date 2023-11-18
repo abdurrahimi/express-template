@@ -1,0 +1,6 @@
+const path = require('path');
+
+module.exports = {
+  'config': path.resolve('config', 'database.js'), // path ke file konfigurasi database
+  'models-path': path.resolve('src', 'models'), // path ke direktori models
+};

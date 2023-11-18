@@ -1,8 +1,9 @@
 import express from 'express'
-import * as controller from '../controller/administrator/Controller.js'
+import * as controller from '../src/controller/adminController.js'
 
 const router = express.Router()
 
-router.get('/test', controller.test)
+router.post('/create', controller.create)
+router.get('/', controller.getList)
 
 export default router

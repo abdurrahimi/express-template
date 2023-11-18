@@ -1,24 +1,25 @@
 import path from 'path';
 import express from 'express';
-import administratorRoutes from './src/routes/administrator.js';
+import sequelize from './config/sequelize.js';
+import initModels from './src/models/init-models.js'
+import administratorRoutes from './routes/administrator.js';
 import chokidar from 'chokidar';
 import { fork } from 'child_process';
 
 const app = express();
 const PORT = process.env.PORT || 8000;
 
+app.use(express.json());
+initModels(sequelize);
+
 app.use('/api/administrator', administratorRoutes);
-app.use('/', (req, res) => {
-    res.status(400).json({
-        status: false
-    });
-});
 
 const server = app.listen(PORT, () => {
     console.log(`Server is running at http://127.0.0.1:${PORT}`);
 });
 
-if (process.env.NODE_ENV !== 'production') {
+//INI BUAT HOT RELOADNYA MASIH ERROR WKWKWK
+/* if (process.env.NODE_ENV !== 'production') {
     const watcher = chokidar.watch('.', {
         ignored: /node_modules/,
         persistent: true,
@@ -28,8 +29,8 @@ if (process.env.NODE_ENV !== 'production') {
         console.log('Server is restarting...');
         server.close(() => {
             console.log('Server closed. Reloading...');
-            const filePath = path.join(new URL(import.meta.url).pathname, '../index.js');
-            fork(filePath);
+            //const filePath = path.join(new URL(import.meta.url).pathname, '../index.js'); 
+            fork('./index.js');
         });
     });
-}
+} */

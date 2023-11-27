@@ -1,9 +1,12 @@
 import express from 'express'
-import * as controller from '../src/controller/adminController.js'
+import controller from '../src/controller/administrator/index.js';
+import middleware from '../src/middleware/index.js';
 
 const router = express.Router()
 
-router.post('/create', controller.create)
-router.get('/', controller.getList)
+router.post('/login', controller.handleLogin)
+
+router.use(middleware.authenticate)
+router.get('/profile', controller.getProfile)
 
 export default router
